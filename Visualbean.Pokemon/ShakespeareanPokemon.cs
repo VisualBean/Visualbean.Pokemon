@@ -2,7 +2,7 @@
 // Copyright (c) Visualbean. All rights reserved.
 // </copyright>
 
-namespace Visualbean.Pokemon.Services
+namespace Visualbean.Pokemon
 {
     using Newtonsoft.Json;
 

@@ -2,23 +2,30 @@
 // Copyright (c) Visualbean. All rights reserved.
 // </copyright>
 
-namespace Visualbean.Pokemon.Services
+namespace Visualbean.Pokemon
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using LazyCache;
     using Visualbean.Pokemon.Pokemon;
     using Visualbean.Pokemon.Shakespeare;
 
-    public class PokemonTranslationService
+    /// <summary>
+    /// The ShakespeareanPokemonService.
+    /// </summary>
+    public class ShakespeareanPokemonService : IShakespeareanPokemonService
     {
         private readonly IPokeApiClient pokeClient;
         private readonly ITranslationClient translationClient;
         private readonly IAppCache cache;
 
-        public PokemonTranslationService(
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShakespeareanPokemonService"/> class.
+        /// </summary>
+        /// <param name="pokeClient">The poke client.</param>
+        /// <param name="translationClient">The translation client.</param>
+        /// <param name="cache">The cache.</param>
+        public ShakespeareanPokemonService(
             IPokeApiClient pokeClient,
             ITranslationClient translationClient,
             IAppCache cache)
@@ -30,6 +37,7 @@ namespace Visualbean.Pokemon.Services
 
         private static Result<ShakespeareanPokemon> NameMustBeSuppliedResult => Result.Fail<ShakespeareanPokemon>("Name must be supplied");
 
+        /// <inheritdoc/>
         public async Task<Result<ShakespeareanPokemon>> GetShakespeareanPokemonAsync(string name)
         {
             name = name?.Trim().ToLower();
@@ -50,7 +58,7 @@ namespace Visualbean.Pokemon.Services
                 var textToTranslate = pokemonResult.Value.FlavourEntries.FirstOrDefault(entry => entry.Language == Language.English);
                 if (string.IsNullOrEmpty(textToTranslate))
                 {
-                    return Result.Fail<ShakespeareanPokemon>("No english description found.");
+                    return new Result<ShakespeareanPokemon>(default, Status.NotFound, "No english description found.");
                 }
 
                 var translationResult = await this.translationClient.GetTranslationAsync(textToTranslate);
