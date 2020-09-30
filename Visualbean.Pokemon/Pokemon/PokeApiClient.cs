@@ -44,7 +44,7 @@ namespace Visualbean.Pokemon.Pokemon
         /// <inheritdoc/>
         public async Task<Result<Pokemon>> GetByNameAsync(string name)
         {
-            name = name.Trim().ToLower();
+            name = name?.Trim().ToLower();
             if (string.IsNullOrEmpty(name))
             {
                 return NameMustBeSuppliedResult;

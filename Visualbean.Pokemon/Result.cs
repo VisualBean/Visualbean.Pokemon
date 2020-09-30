@@ -56,13 +56,6 @@ namespace Visualbean.Pokemon
         /// <summary>
         /// Fails the specified message.
         /// </summary>
-        /// <param name="message">The message.</param>
-        /// <returns>A result.</returns>
-        public static Result Fail(string message) => new Result(false, message);
-
-        /// <summary>
-        /// Fails the specified message.
-        /// </summary>
         /// <typeparam name="T">The type of data stored.</typeparam>
         /// <param name="message">The message.</param>
         /// <returns>A result.</returns>
