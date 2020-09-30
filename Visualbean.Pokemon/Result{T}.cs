@@ -15,13 +15,13 @@ namespace Visualbean.Pokemon
         private readonly T value;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Result{T}"/> class.
+        /// Initializes a new instance of the <see cref="Result{T}" /> class.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <param name="isSuccess">if set to <c>true</c> [is success].</param>
+        /// <param name="status">The status.</param>
         /// <param name="error">The error.</param>
-        protected internal Result(T value, bool isSuccess, string error)
-            : base(isSuccess, error)
+        protected internal Result(T value, Status status, string error)
+            : base(status, error)
         {
             this.value = value;
         }

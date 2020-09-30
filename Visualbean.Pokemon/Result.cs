@@ -12,21 +12,21 @@ namespace Visualbean.Pokemon
     public class Result
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Result"/> class.
+        /// Initializes a new instance of the <see cref="Result" /> class.
         /// </summary>
-        /// <param name="isSuccess">if set to <c>true</c> [is success].</param>
+        /// <param name="status">The status.</param>
         /// <param name="error">The error.</param>
         /// <exception cref="InvalidOperationException"></exception>
-        protected Result(bool isSuccess, string error)
+        protected Result(Status status, string error)
         {
-            if ((isSuccess && !string.IsNullOrWhiteSpace(error))
-                || (!isSuccess && string.IsNullOrWhiteSpace(error)))
+            this.Status = status;
+            this.Error = error;
+
+            if ((this.IsSuccess && !string.IsNullOrWhiteSpace(error))
+               || (!this.IsSuccess && string.IsNullOrWhiteSpace(error)))
             {
                 throw new InvalidOperationException();
             }
-
-            this.IsSuccess = isSuccess;
-            this.Error = error;
         }
 
         /// <summary>
@@ -35,7 +35,15 @@ namespace Visualbean.Pokemon
         /// <value>
         ///   <c>true</c> if this instance is success; otherwise, <c>false</c>.
         /// </value>
-        public bool IsSuccess { get; }
+        public bool IsSuccess => (int)this.Status < 10;
+
+        /// <summary>
+        /// Gets the status.
+        /// </summary>
+        /// <value>
+        /// The status.
+        /// </value>
+        public Status Status { get; private set; }
 
         /// <summary>
         /// Gets the error.
@@ -43,7 +51,7 @@ namespace Visualbean.Pokemon
         /// <value>
         /// The error.
         /// </value>
-        public string Error { get; }
+        public string Error { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is failure.
@@ -56,10 +64,17 @@ namespace Visualbean.Pokemon
         /// <summary>
         /// Fails the specified message.
         /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns>A result.</returns>
+        public static Result Fail(string message) => new Result(Status.Error, message);
+
+        /// <summary>
+        /// Fails the specified message.
+        /// </summary>
         /// <typeparam name="T">The type of data stored.</typeparam>
         /// <param name="message">The message.</param>
         /// <returns>A result.</returns>
-        public static Result<T> Fail<T>(string message) => new Result<T>(default(T), false, message);
+        public static Result<T> Fail<T>(string message) => new Result<T>(default(T), Status.Error, message);
 
         /// <summary>
         /// Oks the specified value.
@@ -67,6 +82,6 @@ namespace Visualbean.Pokemon
         /// <typeparam name="T">The type of data stored.</typeparam>
         /// <param name="value">The value.</param>
         /// <returns>A result.</returns>
-        public static Result<T> Ok<T>(T value) => new Result<T>(value, true, error: null);
+        public static Result<T> Ok<T>(T value) => new Result<T>(value, Status.Ok, error: null);
     }
 }
