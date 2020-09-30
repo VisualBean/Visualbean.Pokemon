@@ -12,6 +12,24 @@ namespace Visualbean.Pokemon
     public class Result
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Result"/> class.
+        /// </summary>
+        /// <param name="isSuccess">if set to <c>true</c> [is success].</param>
+        /// <param name="error">The error.</param>
+        /// <exception cref="InvalidOperationException"></exception>
+        protected Result(bool isSuccess, string error)
+        {
+            if ((isSuccess && !string.IsNullOrWhiteSpace(error))
+                || (!isSuccess && string.IsNullOrWhiteSpace(error)))
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.IsSuccess = isSuccess;
+            this.Error = error;
+        }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is success.
         /// </summary>
         /// <value>
@@ -34,24 +52,6 @@ namespace Visualbean.Pokemon
         ///   <c>true</c> if this instance is failure; otherwise, <c>false</c>.
         /// </value>
         public bool IsFailure => !this.IsSuccess;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Result"/> class.
-        /// </summary>
-        /// <param name="isSuccess">if set to <c>true</c> [is success].</param>
-        /// <param name="error">The error.</param>
-        /// <exception cref="InvalidOperationException"></exception>
-        protected Result(bool isSuccess, string error)
-        {
-            if ((isSuccess && !string.IsNullOrWhiteSpace(error))
-                || (!isSuccess && string.IsNullOrWhiteSpace(error)))
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.IsSuccess = isSuccess;
-            this.Error = error;
-        }
 
         /// <summary>
         /// Fails the specified message.
