@@ -19,6 +19,14 @@ namespace Visualbean.Pokemon.Pokemon
         }
 
         /// <summary>
+        /// Gets the english. // Too funny.. had to leave in..
+        /// </summary>
+        /// <value>
+        /// The english.
+        /// </value>
+        public static Language English => "en";
+
+        /// <summary>
         /// Gets the name.
         /// </summary>
         /// <value>
