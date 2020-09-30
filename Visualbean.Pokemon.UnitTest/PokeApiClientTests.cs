@@ -56,6 +56,17 @@ namespace Visualbean.Pokemon.UnitTest
         }
 
         [TestMethod]
+        public async Task GetPokemon_WithSameNameDifferentCasing_ReturnsSameResult()
+        {
+            (PokeApiClient client, MockHttpMessageHandler handler) = SetupPokeApiClient();
+
+            var first = await client.GetByNameAsync(PokemonName);
+            var second = await client.GetByNameAsync(PokemonName.ToLower());
+
+            Assert.AreEqual(first.Value, second.Value, "Both objects should be the same.");
+        }
+
+        [TestMethod]
         public async Task GetPokemon_WithSameName_ReturnsCachedResult()
         {
             (PokeApiClient client, MockHttpMessageHandler handler) = SetupPokeApiClient();
