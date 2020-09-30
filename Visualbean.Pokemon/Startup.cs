@@ -38,7 +38,7 @@ namespace Visualbean.Pokemon
 
             services.AddHttpClient<IPokeApiClient, PokeApiClient>();
             services.AddHttpClient<ITranslationClient, ShakespeareTranslationClient>();
-
+            services.AddSingleton<IShakespeareanPokemonService, ShakespeareanPokemonService>();
             services.AddLazyCache();
         }
 
