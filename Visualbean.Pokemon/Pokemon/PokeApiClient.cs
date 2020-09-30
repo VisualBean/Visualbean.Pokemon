@@ -28,7 +28,11 @@ namespace Visualbean.Pokemon
         /// <param name="cache">The cache.</param>
         public PokeApiClient(HttpClient httpClient, IAppCache cache)
         {
-            httpClient.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
+            if (httpClient.BaseAddress == null)
+            {
+                httpClient.BaseAddress = new Uri("https://pokeapi.co");
+            }
+
             this.httpClient = httpClient;
             this.cache = cache;
         }
