@@ -1,15 +1,12 @@
 using LazyCache;
-using LazyCache.Mocks;
 using LazyCache.Providers;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Moq.Protected;
 using System;
 using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
+using Visualbean.Pokemon.Pokemon;
 
 namespace Visualbean.Pokemon.UnitTest
 {

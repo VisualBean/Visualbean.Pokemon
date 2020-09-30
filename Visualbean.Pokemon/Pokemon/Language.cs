@@ -1,8 +1,8 @@
-// <copyright file="Language.cs" company="Visualbean">
+﻿// <copyright file="Language.cs" company="Visualbean">
 // Copyright (c) Visualbean. All rights reserved.
 // </copyright>
 
-namespace Visualbean.Pokemon
+namespace Visualbean.Pokemon.Pokemon
 {
     /// <summary>
     /// The Language.

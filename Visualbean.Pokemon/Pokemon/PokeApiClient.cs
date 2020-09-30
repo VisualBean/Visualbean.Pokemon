@@ -2,7 +2,7 @@
 // Copyright (c) Visualbean. All rights reserved.
 // </copyright>
 
-namespace Visualbean.Pokemon
+namespace Visualbean.Pokemon.Pokemon
 {
     using System;
     using System.Net;

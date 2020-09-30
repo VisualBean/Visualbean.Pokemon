@@ -10,6 +10,7 @@ namespace Visualbean.Pokemon
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.OpenApi.Models;
+    using Visualbean.Pokemon.Pokemon;
     using Visualbean.Pokemon.Shakespeare;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Core .Net class.")]
