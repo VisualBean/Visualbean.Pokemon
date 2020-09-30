@@ -53,17 +53,17 @@ namespace Visualbean.Pokemon
             var pokemon = await this.cache.GetAsync<Pokemon>(name);
             if (pokemon == null)
             {
-                var result = await this.httpClient.GetAsync($"/api/v2/pokemon-species/{name}");
+                var response = await this.httpClient.GetAsync($"/api/v2/pokemon-species/{name}");
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    var content = await result.Content.ReadAsStringAsync();
+                    var content = await response.Content.ReadAsStringAsync();
                     pokemon = JsonConvert.DeserializeObject<Pokemon>(content);
                     this.cache.Add(name, pokemon);
                 }
                 else
                 {
-                    if (result.StatusCode == HttpStatusCode.NotFound)
+                    if (response.StatusCode == HttpStatusCode.NotFound)
                     {
                         return PokemonNotFoundResult;
                     }
