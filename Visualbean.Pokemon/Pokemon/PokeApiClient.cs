@@ -50,16 +50,15 @@ namespace Visualbean.Pokemon.Pokemon
                 return NameMustBeSuppliedResult;
             }
 
-            var pokemon = await this.cache.GetAsync<Pokemon>(name);
-            if (pokemon == null)
+            return await this.cache.GetOrAddAsync(name, async () =>
             {
                 var response = await this.httpClient.GetAsync($"/api/v2/pokemon-species/{name}");
 
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    pokemon = JsonConvert.DeserializeObject<Pokemon>(content);
-                    this.cache.Add(name, pokemon);
+                    var pokemon = JsonConvert.DeserializeObject<Pokemon>(content);
+                    return Result.Ok(pokemon);
                 }
                 else
                 {
@@ -70,9 +69,7 @@ namespace Visualbean.Pokemon.Pokemon
 
                     throw new Exception("Something went wrong.");
                 }
-            }
-
-            return Result.Ok(pokemon);
+            });
         }
     }
 }
