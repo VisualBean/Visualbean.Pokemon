@@ -39,8 +39,6 @@ namespace Visualbean.Pokemon.Shakespeare
 
         private static Result<string> NoTextSuppliedResult => Result.Fail<string>("Text to translate, must be supplied.");
 
-        private static Result<string> TooManyRequestsResult => Result.Fail<string>("Too many requests.");
-
         /// <inheritdoc/>
         public async Task<Result<string>> GetTranslationAsync(string text)
         {
@@ -71,7 +69,7 @@ namespace Visualbean.Pokemon.Shakespeare
                 {
                     if (response.StatusCode == HttpStatusCode.TooManyRequests)
                     {
-                        return TooManyRequestsResult;
+                        throw new Exception("Too many requests");
                     }
 
                     throw new Exception("Something went wrong.");
