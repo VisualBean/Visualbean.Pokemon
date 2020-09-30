@@ -16,6 +16,6 @@ namespace Visualbean.Pokemon.Shakespeare
         /// </summary>
         /// <param name="text">The text to translate.</param>
         /// <returns>A result.</returns>
-        Task<Result<string>> GetTranslation(string text);
+        Task<Result<string>> GetTranslationAsync(string text);
     }
 }

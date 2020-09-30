@@ -33,7 +33,7 @@ namespace Visualbean.Pokemon.UnitTest
         {
             (ShakespeareTranslationClient client, _) = SetupTranslationClientClient();
 
-            var result = await client.GetTranslation(Text);
+            var result = await client.GetTranslationAsync(Text);
 
             Assert.IsTrue(result.IsSuccess);
             Assert.IsFalse(string.IsNullOrWhiteSpace(result.Value), "results should have a value.");
@@ -44,7 +44,7 @@ namespace Visualbean.Pokemon.UnitTest
         {
             (ShakespeareTranslationClient client, _) = SetupTranslationClientClient(HttpStatusCode.TooManyRequests);
 
-            var result = await client.GetTranslation(Text);
+            var result = await client.GetTranslationAsync(Text);
 
             Assert.IsTrue(result.IsFailure, "Too many requests from the API should result in a Failure.");
         }
@@ -55,7 +55,7 @@ namespace Visualbean.Pokemon.UnitTest
         {
             (ShakespeareTranslationClient client, _) = SetupTranslationClientClient(HttpStatusCode.BadGateway);
 
-            await client.GetTranslation(Text);
+            await client.GetTranslationAsync(Text);
         }
 
         [TestMethod]
@@ -63,8 +63,8 @@ namespace Visualbean.Pokemon.UnitTest
         {
             (ShakespeareTranslationClient client, MockHttpMessageHandler handler) = SetupTranslationClientClient();
 
-            var first = await client.GetTranslation(Text);
-            var second = await client.GetTranslation(Text);
+            var first = await client.GetTranslationAsync(Text);
+            var second = await client.GetTranslationAsync(Text);
 
             Assert.AreEqual(first.Value, second.Value, "Both results should be the same.");
             Assert.IsTrue(handler.NumberOfCalls == 1, "Second result should be cached.");

@@ -42,7 +42,7 @@ namespace Visualbean.Pokemon.Shakespeare
         private static Result<string> TooManyRequestsResult => Result.Fail<string>("Too many requests.");
 
         /// <inheritdoc/>
-        public async Task<Result<string>> GetTranslation(string text)
+        public async Task<Result<string>> GetTranslationAsync(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
             {
