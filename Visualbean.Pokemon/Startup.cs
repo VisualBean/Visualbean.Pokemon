@@ -1,24 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
+// <copyright file="Startup.cs" company="Visualbean">
+// Copyright (c) Visualbean. All rights reserved.
+// </copyright>
 
 namespace Visualbean.Pokemon
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.OpenApi.Models;
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Core .Net class.")]
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -28,18 +26,19 @@ namespace Visualbean.Pokemon
             services.AddControllers();
             services.AddMvc();
 
-            services.AddSwaggerGen(config => 
+            services.AddSwaggerGen(config =>
             {
                 config.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Shakespearean pokemon descriptions",
                 });
-
-
             });
+
+            services.AddHttpClient<IPokeApiClient, PokeApiClient>();
+
+            services.AddLazyCache();
         }
 
-        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
