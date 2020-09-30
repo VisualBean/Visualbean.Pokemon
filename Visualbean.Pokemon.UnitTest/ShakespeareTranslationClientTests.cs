@@ -40,6 +40,7 @@ namespace Visualbean.Pokemon.UnitTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(Exception))]
         public async Task GetTranslation_WithTooManyRequests_ReturnsFailureResult()
         {
             (ShakespeareTranslationClient client, _) = SetupTranslationClientClient(HttpStatusCode.TooManyRequests);
