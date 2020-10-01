@@ -17,7 +17,7 @@ This will run the service in the console as a selfhosted api.
 1. Run `docker build -t pokemonapi .` from the root of the project.    
 2. Run `docker run -d -p 5000:80 --name shakespeareanpokemon pokemonapi`  
 
-Now you can go to http://localhost:5000 to browse the swagger docs and test it out.
+Now you can go to http://localhost:5000/docs to browse the swagger docs and test it out.
 
 
 ## Using it
