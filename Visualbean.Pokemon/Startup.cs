@@ -49,8 +49,6 @@ namespace Visualbean.Pokemon
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
