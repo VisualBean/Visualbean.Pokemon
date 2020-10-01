@@ -1,0 +1,1 @@
+Visualbean.Pokemon\bin\Release\netcoreapp3.1\win-x64\publish\Visualbean.Pokemon.exe
