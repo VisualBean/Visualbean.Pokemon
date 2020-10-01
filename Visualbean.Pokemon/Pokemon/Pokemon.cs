@@ -6,12 +6,13 @@ namespace Visualbean.Pokemon.Pokemon
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Newtonsoft.Json;
 
     /// <summary>
     /// The pokemon.
     /// </summary>
-    public class Pokemon
+    public class Pokemon : IEquatable<Pokemon>
     {
         /// <summary>
         /// Gets the name.
@@ -51,31 +52,34 @@ namespace Visualbean.Pokemon.Pokemon
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null || !(obj is Pokemon))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (this.GetType() != obj.GetType())
-            {
-                return false;
-            }
-            else
-            {
-                Pokemon item = (Pokemon)obj;
-                return item.Name.Equals(this.Name);
-            }
+            return this.Equals(obj as Pokemon);
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.Name);
+            return this.Name.GetHashCode();
+        }
+
+        /// <inheritdoc/>
+        public bool Equals([AllowNull] Pokemon other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (this.GetType() != other.GetType())
+            {
+                return false;
+            }
+
+            return this.Name == other.Name;
         }
     }
 }
