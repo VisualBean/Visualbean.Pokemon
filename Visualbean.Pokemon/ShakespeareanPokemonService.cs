@@ -1,4 +1,4 @@
-﻿// <copyright file="PokemonTranslationService.cs" company="Visualbean">
+﻿// <copyright file="ShakespeareanPokemonService.cs" company="Visualbean">
 // Copyright (c) Visualbean. All rights reserved.
 // </copyright>
 

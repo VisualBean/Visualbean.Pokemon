@@ -1,4 +1,4 @@
-﻿// <copyright file="SharespeareTranslationClient.cs" company="Visualbean">
+﻿// <copyright file="ShakespeareTranslationClient.cs" company="Visualbean">
 // Copyright (c) Visualbean. All rights reserved.
 // </copyright>
 

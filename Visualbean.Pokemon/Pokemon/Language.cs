@@ -2,11 +2,11 @@
 // Copyright (c) Visualbean. All rights reserved.
 // </copyright>
 
-using System;
-using System.Diagnostics.CodeAnalysis;
-
 namespace Visualbean.Pokemon.Pokemon
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// The Language.
     /// </summary>
