@@ -24,6 +24,8 @@ Now you can go to http://localhost:5000/docs to browse the swagger docs and test
 The API starts a webserver on http://localhost:5000  
 The documentation can be found at /docs, so please browse to http://localhost:5000/docs for the swagger docs  
 
+---
+
 ## TODO
 ### Tests
 
